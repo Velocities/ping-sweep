@@ -1,31 +1,17 @@
-from os import system
-from platform import system as ostype
+from mainfuncs import *
 
-def quicktest() -> None:
-	#Adjusts to os and reduces timeout time for a quicker scan
-	if ostype() == 'Linux':
-		for i in range(1, 254):
-			system(f"ping -w 250 -c 2 10.0.0.{i} >> results.txt")
-	else:
-		for i in range(1, 254):
-			system(f"ping -w 250 -n 2 10.0.0.{i} >> results.txt")
-
-def extensivetest() -> None:
-	if ostype() == 'Linux':
-		for i in range(1, 254):
-			system(f"ping -c 3 10.0.0.{i} >> results.txt")
-	else:
-		for i in range(1, 254):
-			system(f"ping -n 3 10.0.0.{i} >> results.txt")
 def main():
+	ip_add = extract_ip()
+	with open("my_ip.txt", "w") as f:
+		f.write(f"{ip_add}")
 	cont = True
 	while cont:
 		try:
 			choice = int(input("Would you like to do a quick sweep or extensive sweep? Type 1 for quick or 2 for extensive\n(Note: An extensive sweep will take longer, but be more accurate, especially for devices that take a while to respond):"))
 			if choice == 1:
-				quicktest()
+				quicktest(ip_add)
 			elif choice == 2:
-				extensivetest()
+				extensivetest(ip_add)
 			else:
 				print("Invalid response")
 				continue

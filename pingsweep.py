@@ -1,8 +1,8 @@
-#!/bin/python3
 from os import system
 from platform import system as ostype
 
 def quicktest() -> None:
+	#Adjusts to os and reduces timeout time for a quicker scan
 	if ostype() == 'Linux':
 		for i in range(1, 254):
 			system(f"ping -w 250 -c 2 10.0.0.{i} >> results.txt")

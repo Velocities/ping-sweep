@@ -2,8 +2,6 @@ from mainfuncs import *
 
 def main():
 	ip_add = extract_ip()
-	with open("my_ip.txt", "w") as f:
-		f.write(f"{ip_add}")
 	cont = True
 	while cont:
 		try:
